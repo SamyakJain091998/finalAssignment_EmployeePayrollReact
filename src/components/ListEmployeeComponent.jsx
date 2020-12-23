@@ -4,6 +4,7 @@ import image1 from './Ellipse-1.png';
 import image2 from './Ellipse-2.png';
 import image3 from './Ellipse-4.png';
 import image4 from './Ellipse-5.png';
+import defaultImage from './PngItem_1503945.png';
 import updateImage from './create-black-18dp.svg';
 import deleteImage from './delete-black-18dp.svg';
 import infoImage from './info-icon.svg';
@@ -118,7 +119,7 @@ class ListEmployeeComponent extends Component {
                                 this.state.employees.map(
                                     employee =>
                                         <tr key={employee.id}>
-                                            <td><center><img style={{ height: "33px", width: "33px" }} src={employee.profilePic === "./Ellipse-1.png" ? image1 : employee.profilePic === "./Ellipse-2.png" ? image2 : employee.profilePic === "./Ellipse-4.png" ? image3 : employee.profilePic === "./Ellipse-5.png" ? image4 : image4}></img></center></td>
+                                            <td><center><img style={{ height: "33px", width: "33px" }} src={employee.profilePic === "./Ellipse-1.png" ? image1 : employee.profilePic === "./Ellipse-2.png" ? image2 : employee.profilePic === "./Ellipse-4.png" ? image3 : employee.profilePic === "./Ellipse-5.png" ? image4 : defaultImage}></img></center></td>
                                             <td><center>{employee.firstName}</center></td>
                                             <td><center>{employee.lastName}</center></td>
                                             <td>
@@ -126,7 +127,7 @@ class ListEmployeeComponent extends Component {
                                                     {/* {
                                                         this.state.department.map(dept => <label style={{ marginRight: "10px" }}>{dept}</label>)
                                                     } */}
-                                                    {employee.department + " "}
+                                                    {employee.department.map(elmt => <button style = {{marginRight: "5px", backgroundColor: "#d9f386", borderRadius: "15px", borderColor: "#d9f386"}}>{elmt}</button>)}
                                                 </center>
                                             </td>
                                             <td><center>{employee.startDate}</center></td>

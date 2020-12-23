@@ -74,6 +74,12 @@ class CreateEmployeeComponent extends Component {
         startDateDummy = startDateDummy + " " + this.state.year;
         let employee = { firstName: this.state.firstName, lastName: this.state.lastName, gender: this.state.gender, emailId: this.state.emailId, department: this.state.department, startDate: startDateDummy, profilePic: this.state.profilePic, salary: this.state.salary, note: this.state.note };
         console.log('employee => ' + JSON.stringify(employee));
+
+        if (this.state.firstName == '' || this.state.gender == '' || this.state.department == '' ||
+            this.state.day == '' || this.state.month == '' || this.state.year == '') {
+            alert("Please fill the required details");
+        }
+
         if (this.state.id === '_add') {
             EmployeeService.createEmployee(employee).then(res => {
                 this.props.history.push('/employees');
@@ -133,7 +139,12 @@ class CreateEmployeeComponent extends Component {
     }
 
     changeDepartmentHandler = (event) => {
-        console.log(event.target.checked);
+        // console.log(event.target.checked);
+        if (this.isCheckBoxChecked(event.target.value)) {
+            event.target.checked = false;
+            console.log(event.target.checked);
+        }
+
         if (this.state.department.indexOf(event.target.value) > -1) {
             this.state.department.splice(this.state.department.indexOf(event.target.value), 1);
         } else {
@@ -236,16 +247,16 @@ class CreateEmployeeComponent extends Component {
                             <div className="card-body">
                                 <form>
                                     <div class="flex-row-action">
-                                        <label> First Name: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label> First Name: </label><label style = {{color: "red"}}>*</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <div className="form-group">
                                             <input placeholder="First Name" name="firstName" className="form-control"
-                                                value={this.state.firstName} onChange={this.checkFirstName} />
+                                                value={this.state.firstName} onChange={this.checkFirstName} required />
                                             <error-output class="fNameText-error" for="text"></error-output>
                                             <error-output class="fNameText-error-new" for="text"></error-output>
                                         </div>
                                     </div>
                                     <div class="flex-row-action">
-                                        <label> Last Name: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label> Last Name: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <div className="form-group">
                                             <input placeholder="Last Name" name="lastName" className="form-control"
                                                 value={this.state.lastName} onChange={this.checkLastName} />
@@ -255,7 +266,7 @@ class CreateEmployeeComponent extends Component {
                                     </div>
                                     <div class="row-content">
                                         <div class="flex-row-action">
-                                            <label class="label text" for="gender">Gender: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label class="label text" for="gender">Gender: </label><label style = {{color: "red"}}>*</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <div>
                                                 <input class="gender-radio" type="radio" id="male" name="gender" value="male" checked={this.state.gender === "male"} onChange={this.changeGenderHandler} required />&nbsp;&nbsp;&nbsp;
                                                 <label class="gender-text" for="male">Male</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -267,7 +278,7 @@ class CreateEmployeeComponent extends Component {
                                     <br></br>
                                     <div class="row-content">
                                         <div class="flex-row-action">
-                                            <label class="label text" for="gender">Departments: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label class="label text" for="gender">Departments: </label><label style = {{color: "red"}}>*</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <div>
                                                 <input class="department-radio" type="checkbox" id="hr" name="department" value="HR" checked={this.isCheckBoxChecked("HR")} onChange={this.changeDepartmentHandler} required />&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <label class="department-text" for="hr">HR</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -279,13 +290,12 @@ class CreateEmployeeComponent extends Component {
                                                 <label class="department-text" for="operations">OPERATIONS</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <input class="department-radio" type="checkbox" id="operations" name="department" value="OTHERS" checked={this.isCheckBoxChecked("OTHERS")} onChange={this.changeDepartmentHandler} required />&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <label class="department-text" for="others">OTHERS</label>
-
                                             </div>
                                         </div>
                                     </div>
                                     <br></br>
                                     <div class="flex-row-action">
-                                        <label> Email Id: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label> Email Id: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <div className="form-group">
                                             <input placeholder="Email Address" name="emailId" className="form-control"
                                                 value={this.state.emailId} onChange={this.changeEmailHandler} />
@@ -293,9 +303,9 @@ class CreateEmployeeComponent extends Component {
                                     </div>
                                     <br></br>
                                     <div class="flex-row-action">
-                                        <label class="label text" for="startDate">Start Date: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label class="label text" for="startDate">Start Date: </label><label style = {{color: "red"}}>*</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <div id="date">
-                                            <select id="day" name="Day" value={this.state.day} onChange={this.changeDayHandler}>
+                                            <select id="day" name="Day" value={this.state.day} onChange={this.changeDayHandler} required>
                                                 <option value="" disabled selected>Day</option>
                                                 <option value="01">1</option>
                                                 <option value="02">2</option>
@@ -329,7 +339,7 @@ class CreateEmployeeComponent extends Component {
                                                 <option value="30">30</option>
                                                 <option value="31">31</option>
                                             </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <select id="month" name="Month" value={this.state.month} onChange={this.changeMonthHandler}>
+                                            <select id="month" name="Month" value={this.state.month} onChange={this.changeMonthHandler} required>
                                                 <option value="" disabled selected>Month</option>
                                                 <option value="Jan">Jan</option>
                                                 <option value="Feb">Feb</option>
@@ -344,7 +354,7 @@ class CreateEmployeeComponent extends Component {
                                                 <option value="Nov">Nov</option>
                                                 <option value="Dec">Dec</option>
                                             </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <select id="year" name="Year" value={this.state.year} onChange={this.changeYearHandler}>
+                                            <select id="year" name="Year" value={this.state.year} onChange={this.changeYearHandler} required>
                                                 <option value="" disabled selected>Year</option>
                                                 <option value="2020">2020</option>
                                                 <option value="2019">2019</option>
@@ -358,7 +368,7 @@ class CreateEmployeeComponent extends Component {
                                     <br></br>
                                     <div class="row-content">
                                         <div class="profile-radio-content">
-                                            <label class="label text" for="profile">Profile images: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label class="label text" for="profile">Profile images: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <label>
                                                 <input type="radio" id="profile1" name="profile" value='./Ellipse-1.png' checked={this.state.profilePic === "./Ellipse-1.png"} onChange={this.changeProfilePicHandler} alt="image"
                                                     required></input>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -391,11 +401,11 @@ class CreateEmployeeComponent extends Component {
                                     </div>
                                     <div className="form-group">
                                         <input type="range" name="salary" min="500" max="60000" step="100" className="form-control"
-                                            value={this.state.salary} onChange={this.changeSalaryHandler} style={{ marginLeft: "100px" }} />
+                                            value={this.state.salary} onChange={this.changeSalaryHandler} style={{ marginLeft: "104px" }} />
                                     </div>
 
                                     <div class="flex-row-action">
-                                        <label> Note: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label> Note: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <div className="form-group">
                                             <textarea class="input-note" input placeholder="note" name="note" className="form-control"
                                                 value={this.state.note} onChange={this.changeNoteHandler} />
