@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from './logo.png';
 
 class HeaderComponent extends Component {
 
@@ -13,9 +14,13 @@ class HeaderComponent extends Component {
     render() {
         return (
             <div class="App-header">
-                <header class = "header-text">
-                    <div><b><a id = "homePage-link" href = "http://localhost:3000/employees">Employee Management App</a></b></div>
-                </header>
+                <div class="header-flex-row-action">
+                    <a href="http://localhost:3000/employees"><img src={logo} style={{ height: "60px", width: "60px", marginTop: "12px" }} /></a>&nbsp;
+                    <div class="">
+                        <span class="emp-text">EMPLOYEE</span><br/>
+                        <span class="emp-text emp-payroll">PAYROLL</span>
+                    </div>
+                </div>
             </div>
         );
     }

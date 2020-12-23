@@ -7,6 +7,18 @@
   pointer-events: none;
 }
 
+@media only screen and (min-width: 100px){
+  .cancelButton{
+    margin-left: 0px;
+  }
+  .submitButton{
+    margin-left: 0px;
+  }
+  .resetButton{
+    margin-left: 0px;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -14,17 +26,10 @@
 }
 
 .App-header {
-  background-color: #82a70c;
-  min-height: 10vh;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: center;
+  margin-top: 8px;
+  background-color:white;
+  min-height: 11vh;
   font-size: calc(10px + 2vmin);
-}
-
-.header-text{
-  margin-left: 10px;
 }
 
 .App-link {
@@ -40,22 +45,8 @@
   }
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width:100%;
-  height: 70px;
-  background-color: #82a70c;
-  text-align: center;
-  color: #42515f;
-}
-
-.footer-text{
-  margin-top: 20px;
-}
-
 .add-employee-button{
-  margin-left: 990px;
+  margin-left: 5px;
 }
 
 #homePage-link{
@@ -64,5 +55,212 @@
 }
 
 .salary-output{
-  margin-left: 380px;
+  margin-left: 660px;
+}
+
+.flex-row-action{
+  display: flex;
+  flex-direction: row;
+}
+
+.header-flex-row-action{
+  display: flex;
+  flex-direction: row;
+  margin-left: 215px;
+}
+
+.form-group{
+  margin-left: 20px;
+  width: 75%;
+}
+
+error-output{
+  margin-left: 10px;
+  font-size: 12px;
+  font-style: italic;
+  color: red;
+}
+
+.fNameText-error-new{
+  margin-left: 10px;
+  font-size: 12px;
+  font-style: italic;
+  color: green;
+}
+
+.lNameText-error-new{
+  margin-left: 10px;
+  font-size: 12px;
+  font-style: italic;
+  color: green;
+}
+
+.btn-success{
+  margin-right: 230px;
+}
+
+.input-note{
+  width: 500px;
+}
+
+.btn-dark{
+  margin-left: 30px;
+}
+
+.gender-radio{
+  margin-right: 5px;
+}
+
+.gender-text{
+  margin-right: 15px;
+}
+
+.cursorPointer{
+  cursor: pointer;
+}
+
+.infoPointer{
+  cursor:zoom-in;
+}
+
+.employee-count-button{
+  border-radius: 50% !important;
+  height: 30px;
+}
+
+.text-center{
+  font: normal normal bold 24px/25px Roboto;
+  letter-spacing: 0px;
+  color: #42515f;
+  opacity: 1;
+}
+
+.emp-text{
+  font: normal normal bold 20px/25px Montserrat;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 0px;
+  color: #82a70c;
+  text-transform: capitalize;
+}
+
+.emp-payroll{
+  color: #42515f;
+}
+
+.emp-header-text{
+  display: flex;
+  flex-direction: column;
+}
+
+select{
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  font: normal normal normal 16px Roboto;
+  letter-spacing: 0px;
+  color: #42525f;
+  background-color: transparent;
+}
+
+.button{
+  font-size: 20px;
+  font-family: Roboto;
+  letter-spacing: 0px;
+  color: #42515f;
+  opacity: 1;
+  background: transparent;
+  border: none;
+  font-weight: 400;
+  min-width: 140px;
+  padding: 7px 7px;
+  /* border: 1px solid #707070; */
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+.submitButton{
+  border: none;
+  background-color: #f5f5f5;
+  margin-right: 30px;
+  background-color: rgb(228, 226, 226);
+}
+
+.submitButton:hover {
+  background-color: #3e8e41;
+  color: white;
+}
+
+.cancelButton{
+  text-decoration: none;
+  text-align: center;
+  background-color: rgb(228, 226, 226);
+}
+
+.cancelButton:hover {
+  background-color: lightcoral;
+  color: white;
+}
+
+.resetButton{
+  background-color: rgb(228, 226, 226);
+}
+
+.resetButton:hover {
+  background-color: #42515F;
+  color: white;
+}
+
+/* Search bar css */
+
+.search-form .form-group {
+  float: right !important;
+  transition: all 0.35s, border-radius 0s;
+  width: 32px;
+  height: 32px;
+  background-color: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+}
+.search-form .form-group input.form-control {
+  padding-right: 20px;
+  border: 0 none;
+  background: transparent;
+  box-shadow: none;
+  display:block;
+}
+.search-form .form-group input.form-control::-webkit-input-placeholder {
+  display: none;
+}
+.search-form .form-group input.form-control:-moz-placeholder {
+  /* Firefox 18- */
+  display: none;
+}
+.search-form .form-group input.form-control::-moz-placeholder {
+  /* Firefox 19+ */
+  display: none;
+}
+.search-form .form-group input.form-control:-ms-input-placeholder {
+  display: none;
+}
+.search-form .form-group:hover,
+.search-form .form-group.hover {
+  width: 100%;
+  border-radius: 4px 25px 25px 4px;
+}
+.search-form .form-group span.form-control-feedback {
+  position: absolute;
+  top: -1px;
+  right: -2px;
+  z-index: 2;
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  color: #3596e0;
+  left: initial;
+  font-size: 14px;
 }

@@ -10,7 +10,7 @@ import ViewEmployeeComponent from './components/ViewEmployeeComponent';
 
 function App() {
   return (
-    <div>
+    <div style = {{backgroundColor: "#F7F7F7", height: "100%", width: "100%"}}>
       <Router>
         <HeaderComponent />
         <div className="container">
